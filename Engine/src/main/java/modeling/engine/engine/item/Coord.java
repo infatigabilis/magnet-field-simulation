@@ -1,6 +1,8 @@
-package modeling.engine.engine.utils;
+package modeling.engine.engine.item;
 
 public class Coord implements Cloneable {
+    private static final double MOVE_DIVIDER = 1;
+
     private double x;
     private double y;
 
@@ -29,6 +31,12 @@ public class Coord implements Cloneable {
     public void merge(Coord coord) {
         this.x += coord.getX();
         this.y += coord.getY();
+    }
+
+    public Coord getMove() {
+        this.x = this.x/MOVE_DIVIDER;
+        this.y = this.y/MOVE_DIVIDER;
+        return this;
     }
 
     @Override

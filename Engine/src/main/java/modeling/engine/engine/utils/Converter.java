@@ -1,5 +1,7 @@
 package modeling.engine.engine.utils;
 
+import modeling.engine.engine.item.Coord;
+
 public class Converter {
     public static Coord toCartesian(double radius, double angle) {
         double temp = Math.toRadians(angle);

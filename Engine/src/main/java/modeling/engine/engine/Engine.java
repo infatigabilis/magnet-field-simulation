@@ -1,7 +1,7 @@
 package modeling.engine.engine;
 
 import modeling.engine.engine.item.Magnet;
-import modeling.engine.engine.utils.Coord;
+import modeling.engine.engine.item.Coord;
 import modeling.engine.engine.item.Sphere;
 import modeling.engine.engine.utils.Converter;
 
@@ -38,12 +38,12 @@ public class Engine {
     }
 
     private void handle() {
-        Coord delta = Converter.toCartesian(sphere.getSpeed(), sphere.getDirect());
-        for(Magnet magnet : magnets) delta.merge(getMagnetVector(magnet));
+        Coord directionVector = Converter.toCartesian(sphere.getSpeed(), sphere.getDirect());
+        for(Magnet magnet : magnets) directionVector.merge(getMagnetVector(magnet));
 
-        sphere.getCoord().merge(delta);
-        sphere.setSpeed(Converter.getPolarValue(delta));
-        sphere.setDirect(Converter.getPolarAngle(delta));
+        sphere.getCoord().merge(directionVector.getMove());
+        sphere.setSpeed(Converter.getPolarValue(directionVector));
+        sphere.setDirect(Converter.getPolarAngle(directionVector));
     }
 
     private Coord getMagnetVector(Magnet magnet) {

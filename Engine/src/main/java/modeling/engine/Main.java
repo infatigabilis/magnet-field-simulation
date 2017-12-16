@@ -1,25 +1,15 @@
 package modeling.engine;
 
-import com.google.gson.Gson;
-import modeling.engine.engine.Engine;
-import modeling.engine.engine.item.Magnet;
-import modeling.engine.engine.item.Sphere;
-import modeling.engine.engine.utils.Coord;
 import modeling.engine.frontend.EngineServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
-import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 import javax.servlet.DispatcherType;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.EnumSet;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {

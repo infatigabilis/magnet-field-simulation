@@ -1,7 +1,5 @@
 package modeling.engine.engine.item;
 
-import modeling.engine.engine.utils.Coord;
-
 public class Sphere {
     private Coord coord = new Coord(0, 0);
     private double speed;

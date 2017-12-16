@@ -1,7 +1,7 @@
 package modeling.engine.engine;
 
 import modeling.engine.engine.item.Magnet;
-import modeling.engine.engine.utils.Coord;
+import modeling.engine.engine.item.Coord;
 
 import java.util.concurrent.*;
 

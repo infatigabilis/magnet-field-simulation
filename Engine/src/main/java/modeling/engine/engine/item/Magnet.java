@@ -1,7 +1,5 @@
 package modeling.engine.engine.item;
 
-import modeling.engine.engine.utils.Coord;
-
 public class Magnet {
     private Coord coord;
     private double power;

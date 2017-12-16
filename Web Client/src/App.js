@@ -1,14 +1,17 @@
 import React from 'react';
 import './App.css';
 
-import Engine from './app/Engine';
+import Main from './app/Main';
 
 class App extends React.Component {
 
   render() {
     return (
       <div>
-        <Engine />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css" />
+
+        <Main />
       </div>
     );
   }

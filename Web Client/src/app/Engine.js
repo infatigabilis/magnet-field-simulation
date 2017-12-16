@@ -1,11 +1,9 @@
 import React from 'react';
 
-import Coordinate from "./base/Coordinate";
-import Sphere from "./base/Sphere";
-import Magnet from "./base/Magnet";
+import Mediator from './util/Mediator'
 
-const width = 1800;
-const height = 930;
+const width = 1540;
+const height = 900;
 const radius = 10;
 const modifier = 10;
 
@@ -15,57 +13,57 @@ const styles = {
 export default class Engine extends React.Component {
   state = {
     ctx: null,
-    data: []
-  };
-
-  temp = {
-    sphere: new Sphere(new Coordinate(0, 0), 13, 0),
-    magnets: [
-      // new Magnet(new Coordinate(20, 200), 20000),
-      // new Magnet(new Coordinate(220, 300), 30000),
-      new Magnet(new Coordinate(400, 100), 50000),
-      new Magnet(new Coordinate(800, -250), 90),
-      // new Magnet(new Coordinate(100, -140), 4000)
-    ]
+    data: [],
+    magnets: []
   };
 
   componentDidMount() {
+    Mediator.set({
+      receiveData: this.receiveData
+    });
+    this.initField();
+  }
+
+  receiveData = (temp) => {
     fetch('http://localhost:8080/', {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify(this.temp)
+      body: JSON.stringify(temp)
     })
       .then(res => {
         return res.json()
       })
       .then(json => {
-        console.log('Data have been gotten');
+        console.log(json);
         this.setState({
-          data: json
+          data: json,
+          sphere: temp.sphere,
+          magnets: temp.magnets
         });
 
-        this.initField();
+        this.initSphere();
         this.initMagnets();
-
         this.tick();
       });
-  }
+  };
 
   initField = () => {
     this.state.ctx = this.refs.canvas.getContext('2d');
 
     this.state.ctx.translate(width/2, height/2);
     this.state.ctx.save();
+  };
 
-    this.state.ctx.arc(0, 0, radius, 0, 7, false);
+  initSphere = () => {
+    this.state.ctx.arc(this.state.sphere.coord.x, this.state.sphere.coord.y, radius, 0, 7, false);
     this.state.ctx.stroke();
   };
 
   initMagnets = () => {
-    this.temp.magnets.forEach(magnet => this.drawMagnet(magnet.coord));
+    this.state.magnets.forEach(magnet => this.drawMagnet(magnet.coord));
   };
 
   drawMagnet = (coord) => {
@@ -78,7 +76,7 @@ export default class Engine extends React.Component {
       this.move(this.state.data.shift());
 
       if (this.state.data.length !== 0) this.tick();
-    }, 100);
+    }, 20);
   };
 
   move(coord) {

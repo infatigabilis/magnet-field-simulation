@@ -4,16 +4,13 @@ import com.google.gson.Gson;
 import modeling.engine.engine.Engine;
 import modeling.engine.engine.item.Magnet;
 import modeling.engine.engine.item.Sphere;
-import modeling.engine.engine.utils.Coord;
+import modeling.engine.engine.item.Coord;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class EngineServlet extends HttpServlet {
@@ -24,7 +21,7 @@ public class EngineServlet extends HttpServlet {
         payload.sphere.setCoord(new Coord(0, 0));
 
         Engine engine = new Engine(payload.sphere, payload.magnets);
-        List<Coord> result = engine.compute(1000);
+        List<Coord> result = engine.compute(10000);
         String output = new Gson().toJson(result);
 
 //        log(result);
