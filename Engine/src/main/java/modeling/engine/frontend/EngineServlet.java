@@ -24,8 +24,6 @@ public class EngineServlet extends HttpServlet {
         List<Coord> result = engine.compute(10000);
         String output = new Gson().toJson(result);
 
-//        log(result);
-
         resp.getWriter().write(output);
     }
 
