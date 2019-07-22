@@ -4,7 +4,7 @@
 
 ![Example 2](doc/gif/example2.gif?raw=true)
 
-> Технологии: Jetty, ReactJS, Canvas
+> Стек: Jetty, ReactJS, Canvas
 
 Engine - проект на Java. Отвечает за расчет, является сервером
 к которому обрщается веб-клиент(Web Client). Принимает на вход
